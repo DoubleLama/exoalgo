@@ -13,7 +13,7 @@ const oddEvenSort = (data) =>{
     let count = 0
     for(let i=1; i<l-1; i++){
         for(let j=0; j<l-1; j+=2){
-            console.log(data);
+            // console.log(data);
             if (data[j]>data[j+1]){
                 let temp = data[j];
                 data[j] = data[j+1];
@@ -22,7 +22,7 @@ const oddEvenSort = (data) =>{
             count ++
         }
         for(let k=1; k<l-1; k+=2){
-            console.log(data);
+            // console.log(data);
             if (data[k]>data[k+1]){
                 let temp = data[k];
                 data[k] = data[k+1];

@@ -1,47 +1,50 @@
 let fs = require('fs');
 
 fs.readFile(process.argv[2], 'utf8', (error, data) => {
-    console.log(`Avant le tri : ${data}`);
+    console.log(`\nAvant le tri : ${data}`);
     if (error) {
         console.log(error);
         return ;
     }
     data = data.split(" ").map((number)=>{return parseInt(number)})
 
-let fusionSort = (data) => {
-
-
-console.log(`\nTri par fudion : ${count} comparaisons\n`);
-}
-console.log(`Après le tri : ${data}`);
-fusionSort(data)
-})
-
-var countMergeSort=0
-mergeSort=(unsortedArray)=> {
-    countMergeSort++
-    if (unsortedArray.length <= 1) {
-      return unsortedArray;
-    }
-    const middle = Math.floor(unsortedArray.length / 2);
-    const left = unsortedArray.slice(0, middle);
-    const right = unsortedArray.slice(middle);
-    return merge(
-      mergeSort(left), mergeSort(right)
-    );
-  }
-const merge = (left, right)=> {
-    let resultArray = [], leftIndex = 0, rightIndex = 0;
-    while (leftIndex < left.length && rightIndex < right.length) {
-      if (left[leftIndex] < right[rightIndex]) {
-        resultArray.push(left[leftIndex]);
-        leftIndex++; // move left array cursor
-      } else {
-        resultArray.push(right[rightIndex]);
-        rightIndex++; // move right array cursor
+  const fusionSort = (data) => {
+    let count = 0;
+    const sort = (data) => {
+      count++;
+      if (data.length <= 1) {
+        return data;
       }
-    }
-    return resultArray
-            .concat(left.slice(leftIndex))
-            .concat(right.slice(rightIndex));
+      let middle = Math.floor(data.length / 2);
+      let left = data.slice(0, middle);
+      let right = data.slice(middle, data.length);
+      // console.log(data);
+      return fusion(sort(left), sort(right));
+    };
+    
+    const fusion = (left, right) => {
+      let array = [];
+      while (left.length && right.length) {
+        if (left[0] <= right[0]) {
+          array.push(left.shift());
+        } else {
+          array.push(right.shift());
+        }
+      }
+      while (left.length) {
+        array.push(left.shift());
+      }
+      while (right.length) {
+        array.push(right.shift());
+      }
+      // console.log(array);
+      return array;
+    };
+    
+    data = sort(data);
+
+    console.log(`\nTri fusion : ${count} comparaisons\n`);
+    console.log(`Après le tri : ${data}\n`);
   }
+fusionSort(data)
+});

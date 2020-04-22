@@ -23,7 +23,7 @@ const cocktailSort = (data) =>{
                 data[i + 1] = temp 
                 swapped = true 
                 count ++
-                console.log(1, count);
+                // console.log(1, count);
             } 
         } 
        
@@ -37,7 +37,7 @@ const cocktailSort = (data) =>{
                 data[i + 1] = temp 
                 swapped = true 
                 count ++
-                console.log(2, count);
+                // console.log(2, count);
             } 
         } 
         j ++
