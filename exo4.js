@@ -11,59 +11,26 @@ fs.readFile(process.argv[2], 'utf8', (error, data) => {
 
 const sunny = (buildings) =>{
     let j = 1
+    let l = buildings.length
     let count = 1
-    for(let i=0; i<buildings.length; j++){
-        if(j == buildings.length){
+    for(let i=0; i<l; j++){
+        if(j == l){
             i++
             j = i+1
             count ++
-            // console.log(count);
         }
-        if(i == buildings.length -1){
-            return count
-        }
-        if(buildings[i]<buildings[i+1]){
-            // console.log(i, j);
+        if(buildings[i]<buildings[j]){
             i ++
         }
-    }
-    console.log(count);
-    if(count == 1){
-        console.log(`=> Apparemment seul le dernier immeuble est ensoleillé\n`);
-    }else{
-        console.log(`=> On dirait que ${count} immeubles sont ensoleillés\n`);
+        if(i == l-1){
+            if(count == 1){
+                console.log(`=> Apparemment seul le dernier immeuble est ensoleillé\n`);
+            }else{
+                console.log(`=> On dirait que ${count} immeubles sont ensoleillés\n`);
+            }
+            return count
+        }
     }
 }
-
 sunny(buildings)
-
 })
-3, 7, 8, 3, 6, 1 
-
-
-
-
-
-
-
-
-
-const exo4 = (data) => {
-    let count = 0;
-    let j = 0;
-    for (let i = 0; i < data.length; i++) {
-      if (j === data.length - 1) {
-        count ++;
-        return count;
-      }
-      if (data[i] > data[j]) {
-        i = j;
-        j++;
-      }
-      if (i === data.length - 1) {
-        count ++;
-        i = j;
-        j++;
-      }
-    }
-  };
